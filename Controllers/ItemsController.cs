@@ -10,7 +10,7 @@ namespace Catalog.Controllers;
 public class ItemsController: ControllerBase {
 
     private readonly InMemItemsRepo repo;
-    ItemsController() {
+    public ItemsController() {
         this.repo = new InMemItemsRepo();
     }
 
