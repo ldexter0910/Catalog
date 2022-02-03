@@ -13,7 +13,7 @@ public class InMemItemsRepo {
         return this.items;
     }
 
-    public Item GetItem(Guid id) {
+    public Item? GetItem(Guid id) {
         return this.items.Where(item => item.Id == id).SingleOrDefault();
     }
 }
