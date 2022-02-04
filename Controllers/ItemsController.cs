@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 
 using Catalog.Repositories;
-using Catalog.Entities;
+using Catalog.DTOs;
 
 namespace Catalog.Controllers;
 
@@ -15,18 +15,18 @@ public class ItemsController: ControllerBase {
     }
 
     [HttpGet]
-    public ActionResult<IEnumerable<Item>> GetItems(){
-        return Ok(this.repo.GetItems());
+    public ActionResult<IEnumerable<GetItemDto>> GetItems(){
+        return Ok(this.repo.GetItems().Select(item => item.AsDto()));
     }
 
     [HttpGet("{id}")]
-    public ActionResult<Item> GetItem(Guid id) {
-        Item item = this.repo.GetItem(id);
+    public ActionResult<GetItemDto> GetItem(Guid id) {
+        var item = this.repo.GetItem(id);
 
         if (item is null) {
             return NotFound();
         }
 
-        return Ok(this.repo.GetItem(id));
+        return Ok(item.AsDto());
     }
 }
