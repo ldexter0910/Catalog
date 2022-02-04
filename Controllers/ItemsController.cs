@@ -9,9 +9,9 @@ namespace Catalog.Controllers;
 [Route("items")]
 public class ItemsController: ControllerBase {
 
-    private readonly InMemItemsRepo repo;
-    public ItemsController() {
-        this.repo = new InMemItemsRepo();
+    private readonly IItemsRepo repo;
+    public ItemsController(IItemsRepo repo) {
+        this.repo = repo;
     }
 
     [HttpGet]
